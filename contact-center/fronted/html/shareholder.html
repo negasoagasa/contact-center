@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shareholder - Gadaa Bank Contact Center</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+
+    <!-- Add this right after the opening <body> tag -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/gadaa-logo.png" alt="Gadaa Bank Logo" class="logo">
+                <h1>Shareholder Department</h1>
+            </div>
+            <nav class="user-nav">
+                <div class="user-profile">
+                    <span id="currentShareholderName">Shareholder User</span>
+                    <div class="profile-dropdown">
+                        <a href="#" id="shareholderProfileLink">Profile</a>
+                        <a href="#" id="shareholderLogoutLink">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
+        <aside class="sidebar">
+            <ul class="side-nav">
+                <li class="side-nav__item side-nav__item--active">
+                    <a href="#" class="side-nav__link" id="shareholderDashboardLink">
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="side-nav__item">
+                    <a href="#" class="side-nav__link" id="shareholderEscalatedLink">
+                        <span>Escalated Calls</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <main class="main-content">
+            <div class="dashboard" id="shareholderDashboardView">
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Total Escalated Calls</h3>
+                        <p id="shareholderTotalEscalated">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Calls Pending Response</h3>
+                        <p id="shareholderPendingResponse">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Calls Solved Today</h3>
+                        <p id="shareholderSolvedToday">0</p>
+                    </div>
+                </div>
+                
+                <div class="recent-activity">
+                    <h2>Recent Escalated Calls</h2>
+                    <table id="shareholderRecentEscalatedTable">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Agent</th>
+                                <th>Customer</th>
+                                <th>Item</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="escalated-calls" id="shareholderEscalatedView" style="display: none;">
+                <h2>Escalated Calls</h2>
+                <table id="shareholderEscalatedTable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Agent</th>
+                            <th>Customer</th>
+                            <th>Item</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Response Modal -->
+            <div class="modal" id="shareholderResponseModal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2>Respond to Call</h2>
+                    <form id="shareholderResponseForm">
+                        <input type="hidden" id="shareholderResponseCallId">
+                        <div class="form-group">
+                            <label for="shareholderResponseText">Response</label>
+                            <textarea id="shareholderResponseText" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Submit Response</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/shareholder.js"></script>
+    <script src="js/notifications.js"></script>
+</body>
+</html>

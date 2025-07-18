@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back Office - Gadaa Bank Contact Center</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+
+    <!-- Add this right after the opening <body> tag -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/gadaa-logo.png" alt="Gadaa Bank Logo" class="logo">
+                <h1>Back Office Dashboard</h1>
+            </div>
+            <nav class="user-nav">
+                <div class="user-profile">
+                    <span id="currentBackOfficeName">Back Office User</span>
+                    <div class="profile-dropdown">
+                        <a href="#" id="backOfficeProfileLink">Profile</a>
+                        <a href="#" id="backOfficeLogoutLink">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="sidebar">
+            <ul class="side-nav">
+                <li class="side-nav__item side-nav__item--active">
+                    <a href="#" class="side-nav__link" id="boDashboardLink">
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="side-nav__item">
+                    <a href="#" class="side-nav__link" id="boEscalatedLink">
+                        <span>Escalated Calls</span>
+                    </a>
+                </li>
+                <li class="side-nav__item">
+                    <a href="#" class="side-nav__link" id="boPendingLink">
+                        <span>Pending Calls</span>
+                    </a>
+                </li>
+
+                <li class="side-nav__item">
+                    <a href="#" class="side-nav__link" id="boCallLogLink">
+                        <span>Log Call</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div class="dashboard" id="boDashboardView">
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Total Escalated Calls</h3>
+                        <p id="boTotalEscalated">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Calls Pending Response</h3>
+                        <p id="boPendingResponse">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Calls Solved Today</h3>
+                        <p id="boSolvedToday">0</p>
+                    </div>
+                </div>
+                
+                <div class="recent-activity">
+                    <h2>Recent Escalated Calls</h2>
+                    <table id="boRecentEscalatedTable">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Agent</th>
+                                <th>Customer</th>
+                                <th>Item</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="escalated-calls" id="boEscalatedView" style="display: none;">
+                <h2>Escalated Calls</h2>
+                <table id="boEscalatedTable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Agent</th>
+                            <th>Customer</th>
+                            <th>Item</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="pending-calls" id="boPendingView" style="display: none;">
+                <h2>Pending Calls</h2>
+                <table id="boPendingTable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Agent</th>
+                            <th>Customer</th>
+                            <th>Item</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Response Modal -->
+            <div class="modal" id="responseModal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2>Respond to Call</h2>
+                    <form id="responseForm">
+                        <input type="hidden" id="responseCallId">
+                        <div class="form-group">
+                            <label for="responseText">Response</label>
+                            <textarea id="responseText" rows="6" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="responseStatus">Update Status</label>
+                            <select id="responseStatus" required>
+                                <option value="solved">Solved</option>
+                                <option value="pending">Pending</option>
+                                <option value="escalated">Escalate Further</option>
+                            </select>
+                        </div>
+                        <!-- Add this to the response modal -->
+<div class="form-group" id="departmentEscalationGroup" style="display: none;">
+    <label for="escalateToDepartment">Forward to Department</label>
+    <select id="escalateToDepartment">
+        <option value="">Select Department</option>
+        <option value="finance">Finance Department</option>
+        <option value="digital">Digital Department</option>
+        <option value="shareholder">Shareholder Department</option>
+    </select>
+</div>
+                       
+                        <button type="submit" class="btn-submit">Submit Response</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Add this new view in main-content section -->
+            <div class="call-log" id="boCallLogView" style="display: none;">
+                <h2>Log Outbound Call</h2>
+                <form id="boCallLogForm">
+                    <div class="form-group">
+                        <label for="boCustomerContact">Customer Contact</label>
+                        <input type="text" id="boCustomerContact" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="boCallItem">Item</label>
+                        <select id="boCallItem" required>
+                            <option value="">Select Item</option>
+                            <option value="Share Holders">Share Holders</option>
+                            <option value="Branch">Branch</option>
+                            <option value="Account">Account</option>
+                            <option value="Digital Banking">Digital Banking</option>
+                            <option value="Vacancy">Vacancy</option>
+                            <option value="Other">Other</option>
+                            <option value="Incomplete">Incomplete</option>
+                            <option value="Credit">Credit</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="boCallCategory">Case Category</label>
+                        <select id="boCallCategory" required disabled>
+                            <option value="">Select Item first</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="boCallDescription">Description</label>
+                        <textarea id="boCallDescription" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="boCallStatus">Status</label>
+                        <select id="boCallStatus" required>
+                            <option value="solved">Solved</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Log Call</button>
+                </form>
+            </div>
+
+        </main>
+    </div>
+    
+    <script src="js/backoffice.js"></script>
+    <script src="js/notifications.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance - Gadaa Bank Contact Center</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+
+    <!-- Add this right after the opening <body> tag -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/gadaa-logo.png" alt="Gadaa Bank Logo" class="logo">
+                <h1>Finance Department</h1>
+            </div>
+            <nav class="user-nav">
+                <div class="user-profile">
+                    <span id="currentFinanceName">Finance User</span>
+                    <div class="profile-dropdown">
+                        <a href="#" id="financeProfileLink">Profile</a>
+                        <a href="#" id="financeLogoutLink">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <aside class="sidebar">
+            <ul class="side-nav">
+                <li class="side-nav__item side-nav__item--active">
+                    <a href="#" class="side-nav__link" id="financeDashboardLink">
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li class="side-nav__item">
+                    <a href="#" class="side-nav__link" id="financeEscalatedLink">
+                        <span>Escalated Calls</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div class="dashboard" id="financeDashboardView">
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Total Escalated Calls</h3>
+                        <p id="financeTotalEscalated">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Calls Pending Response</h3>
+                        <p id="financePendingResponse">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Calls Solved Today</h3>
+                        <p id="financeSolvedToday">0</p>
+                    </div>
+                </div>
+                
+                <div class="recent-activity">
+                    <h2>Recent Escalated Calls</h2>
+                    <table id="financeRecentEscalatedTable">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Agent</th>
+                                <th>Customer</th>
+                                <th>Item</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="escalated-calls" id="financeEscalatedView" style="display: none;">
+                <h2>Escalated Calls</h2>
+                <table id="financeEscalatedTable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Agent</th>
+                            <th>Customer</th>
+                            <th>Item</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Response Modal -->
+            <div class="modal" id="financeResponseModal" style="display: none;">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2>Respond to Call</h2>
+                    <form id="financeResponseForm">
+                        <input type="hidden" id="financeResponseCallId">
+                        <div class="form-group">
+                            <label for="financeResponseText">Response</label>
+                            <textarea id="financeResponseText" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Submit Response</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/finance.js"></script>
+    <script src="js/notifications.js"></script>
+</body>
+</html>

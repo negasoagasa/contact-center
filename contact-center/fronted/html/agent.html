@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Call Agent - Gadaa Bank Contact Center</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/agent.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo-container">
+                <img src="images/gadaa-logo.png" alt="Gadaa Bank Logo" class="logo">
+                <h1>Call Agent Dashboard</h1>
+            </div>
+            <nav class="user-nav">
+                <div class="user-profile">
+                    <span id="currentAgentName">Agent Name</span>
+                    <div class="profile-dropdown">
+                        <a href="#" id="agentProfileLink">Profile</a>
+                        <a href="#" id="agentLogoutLink">Logout</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        
+        <main class="agent-main">
+            <!-- Replace the call-controls section in agent.html with this: -->
+            <div class="call-log-form">
+                <h2>Log New Call</h2>
+                <form id="callLogForm">
+                    <div class="form-group">
+                        <label for="customerContact">Customer Contact</label>
+                        <input type="text" id="customerContact" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="callItem">Item</label>
+                        <select id="callItem" required>
+                            <option value="">Select Item</option>
+                            <option value="Share Holders">Share Holders</option>
+                            <option value="Branch">Branch</option>
+                            <option value="Account">Account</option>
+                            <option value="Digital Banking">Digital Banking</option>
+                            <option value="Vacancy">Vacancy</option>
+                            <option value="Other">Other</option>
+                            <option value="Incomplete">Incomplete</option>
+                            <option value="Credit">Credit</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="callCategory">Case Category</label>
+                        <select id="callCategory" required disabled>
+                            <option value="">Select Item first</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="callDescription">Description</label>
+                        <textarea id="callDescription" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="callStatus">Status</label>
+                        <select id="callStatus" required>
+                            <option value="new">New</option>
+                            <option value="escalated">Escalated</option>
+                            <option value="abandoned">Abandoned</option>
+                            <option value="pending" disabled>Pending</option>
+                            <option value="solved" disabled>Solved</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="escalationDepartment">Escalate To (if escalated)</label>
+                        <select id="escalationDepartment" disabled>
+                            <option value="">Select Department</option>
+                            <option value="backoffice">Back Office</option>
+                            <option value="shareholder" disabled>Shareholder</option>
+                            <option value="finance" disabled>Finance</option>
+                            <option value="digital" disabled>Digital</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Log Call</button>
+                </form>
+            </div>
+            
+            <div class="recent-calls">
+                <h2>Recent Calls</h2>
+                <table id="recentCallsTable">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Customer</th>
+                            <th>Item</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
+               <!-- Add this inside the call-log-form div, after the form elements -->
+            <div id="customerHistory" class="customer-history" style="display: none;">
+             <!-- Customer history will be inserted here by JavaScript -->
+            </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/agent.js"></script>
+</body>
+</html>

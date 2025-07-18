@@ -1,0 +1,138 @@
+/* Agent-specific styles */
+
+.agent-main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    width: 1500px;
+}
+.call-log-form {
+    background-color: var(--accent-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.call-log-form h2 {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.recent-calls {
+    background-color: var(--accent-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.recent-calls h2 {
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.recent-calls table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.recent-calls th,
+.recent-calls td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.recent-calls th {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+}
+
+.recent-calls tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.btn-view {
+    background-color: var(--info-color);
+    color: var(--accent-color);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-view:hover {
+    background-color: #138496;
+}
+
+/* Add this to agent.css */
+.call-type select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Add to agent.css */
+
+.customer-history {
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-top: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.customer-history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.customer-history-header h4 {
+    color: var(--secondary-color);
+}
+
+.close-history {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--dark-gray);
+    transition: var(--transition);
+}
+
+.close-history:hover {
+    color: var(--secondary-color);
+}
+
+.customer-history-summary {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.customer-history-summary p {
+    margin-bottom: 0.5rem;
+}
+
+.customer-history-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.customer-history-list th,
+.customer-history-list td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 0.875rem;
+}
+
+.customer-history-list th {
+    background-color: rgba(0, 0, 0, 0.02);
+    font-weight: 600;
+}
